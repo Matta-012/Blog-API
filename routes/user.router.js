@@ -16,4 +16,10 @@ router.get(
   UserController.getAll,
 );
 
+router.get(
+  '/:id',
+  auth,
+  UserController.getById,
+);
+
 module.exports = router;
