@@ -13,7 +13,6 @@ const Attributes = {
   },
   content: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false,
   },
   published: {
