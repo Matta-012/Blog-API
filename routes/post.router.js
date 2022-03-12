@@ -10,10 +10,16 @@ router.post(
   PostController.create,
 );
 
-// router.get(
-//   '/',
-//   auth,
-//   CategoryController.getAll,
-// );
+router.get(
+  '/',
+  auth,
+  PostController.getAll,
+);
+
+router.get(
+  '/:id',
+  auth,
+  PostController.getById,
+);
 
 module.exports = router;

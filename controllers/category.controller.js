@@ -14,7 +14,7 @@ const create = async (req, res) => {
   return res.status(201).json({ id: newCategory.id, name });
 };
 
-const getAll = async (req, res) => {
+const getAll = async (_req, res) => {
   const userList = await Category.findAll();
 
   return res.status(200).json(userList);
