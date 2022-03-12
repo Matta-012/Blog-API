@@ -11,6 +11,15 @@ const create = async (req, res) => {
   return res.status(201).json({ token });
 };
 
+const getAll = async (req, res) => {
+  const userList = await User.findAll({
+    attributes: { exclude: ['password'] },
+  });
+
+  return res.status(200).json(userList);
+};
+
 module.exports = {
   create,
+  getAll,
 };
