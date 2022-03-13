@@ -13,9 +13,4 @@ module.exports = Joi.object({
     'string.empty': keyIsRequired,
     'string.base': '422|{{#label}} must be a string',
   }),
-  categoryIds: Joi.array().required().messages({
-    'any.required': keyIsRequired,
-    'array.empty': keyIsRequired,
-    'array.base': '422|{{#label}} must be an array',
-  }),
 });

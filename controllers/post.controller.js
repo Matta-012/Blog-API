@@ -60,8 +60,28 @@ const getById = async (req, res) => {
   return res.status(200).json(post);
 };
 
+const update = async (req, res) => {
+  const { id } = req.params;
+  const { postData } = req;
+  const { title, content, categoryIds } = req.body;
+
+  if (categoryIds) return res.status(400).json({ message: 'Categories cannot be edited' });
+
+  await BlogPost.update({ ...postData, title, content }, { where: { id } });
+
+  const updateResponse = {
+    title,
+    content,
+    userId: postData.userId,
+    categories: postData.categories,
+  };
+
+  return res.status(200).json(updateResponse);
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  update,
 };

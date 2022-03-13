@@ -1,9 +1,9 @@
-const validateNewPost = require('../schemas/validatePost');
+const validateCategoryId = require('../schemas/validateCategoryId');
 
 module.exports = (req, res, next) => {
-  const { title, content } = req.body;
+  const { categoryIds } = req.body;
 
-  const { error } = validateNewPost.validate({ title, content });
+  const { error } = validateCategoryId.validate({ categoryIds });
 
   if (error) {
     const [code, message] = error.message.split('|');
