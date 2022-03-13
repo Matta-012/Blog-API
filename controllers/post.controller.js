@@ -79,9 +79,18 @@ const update = async (req, res) => {
   return res.status(200).json(updateResponse);
 };
 
+const deletePost = async (req, res) => {
+  const { id } = req.params;
+
+  await BlogPost.destroy({ where: { id } });
+
+  return res.status(204).end();
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   update,
+  deletePost,
 };

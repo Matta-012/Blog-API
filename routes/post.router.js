@@ -31,4 +31,11 @@ router.put(
   PostController.update,
 );
 
+router.delete(
+  '/:id',
+  auth,
+  validatePostOwnership,
+  PostController.deletePost,
+);
+
 module.exports = router;
