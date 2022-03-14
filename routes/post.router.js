@@ -21,6 +21,8 @@ router.post(
 
 router.get('/', auth, PostController.getAll);
 
+router.get('/search', auth, PostController.getByQuery);
+
 router.get('/:id', auth, PostController.getById);
 
 router.put(

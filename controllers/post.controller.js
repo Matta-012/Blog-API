@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const generatePostResponse = require('../helpers/generatePostResponse');
 const { BlogPost, User, Category } = require('../models');
 
@@ -34,6 +35,25 @@ const getAll = async (_req, res) => {
       as: 'categories',
       through: { attributes: [] }, // Remove o conteúdo das colunas da tabela PostsCategories
     }],
+  });
+
+  return res.status(200).json(postList);
+};
+
+const getByQuery = async (req, res) => {
+  const { q } = req.query;
+
+  const postList = await BlogPost.findAll({
+    where: {
+      [Op.or]: [
+        { title: { [Op.like]: `%${q}%` } },
+        { content: { [Op.like]: `%${q}%` } },
+      ],
+    },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } }, 
+      { model: Category, as: 'categories', through: { attributes: [] } }, // Remove o conteúdo das colunas da tabela PostsCategories
+    ],
   });
 
   return res.status(200).json(postList);
@@ -93,4 +113,5 @@ module.exports = {
   getById,
   update,
   deletePost,
+  getByQuery,
 };
