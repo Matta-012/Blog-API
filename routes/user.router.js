@@ -22,4 +22,10 @@ router.get(
   UserController.getById,
 );
 
+router.delete(
+  '/me',
+  auth,
+  UserController.deleteUser,
+);
+
 module.exports = router;
